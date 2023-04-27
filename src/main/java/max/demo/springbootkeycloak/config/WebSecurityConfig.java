@@ -1,6 +1,5 @@
 package max.demo.springbootkeycloak.config;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,10 +16,7 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
  */
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
 public class WebSecurityConfig {
-
-    private final KeycloakLogoutHandler keycloakLogoutHandler;
 
     @Bean
     protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
@@ -33,12 +29,7 @@ public class WebSecurityConfig {
                 .requestMatchers("/admin*")
                 .hasAnyRole("ADMIN")
                 .anyRequest()
-                .permitAll();
-        http.oauth2Login()
-                .and()
-                .logout()
-                .addLogoutHandler(keycloakLogoutHandler)
-                .logoutSuccessUrl("/");
+                .authenticated();
         http.oauth2ResourceServer()
                 .jwt()
                 .jwtAuthenticationConverter(jwtAuthenticationConverter());
