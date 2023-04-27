@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestsController {
 
+    @GetMapping("/home")
+    public String getHomeText() {
+        return "welcome home";
+    }
+
     @GetMapping("/admin")
     public String getAdminText() {
         return "hello admin";
