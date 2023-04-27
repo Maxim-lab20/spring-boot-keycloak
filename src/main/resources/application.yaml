@@ -15,7 +15,6 @@ spring:
           keycloak:
             issuer-uri: http://localhost:8080/realms/Hogwarts
             user-name-attribute: preferred_username
-            use-resource-role-mappings: true
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8080/realms/Hogwarts
