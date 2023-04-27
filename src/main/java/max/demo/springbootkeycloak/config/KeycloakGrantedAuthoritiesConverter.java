@@ -10,15 +10,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Converter<Jwt, Collection<GrantedAuthority>> that extracts the roles from Keycloak realm_access.
+ */
 public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Collection<GrantedAuthority>> {
 
     @Override
     public Collection<GrantedAuthority> convert(Jwt source) {
+        /*TODO: null checks*/
         Map<String, Object> realmAccess = source.getClaimAsMap("realm_access");
         List<String> roles = (List<String>) realmAccess.get("roles");
-        return roles.stream()
-                .map(rn -> new SimpleGrantedAuthority("ROLE_" + rn))
-                .collect(Collectors.toList());
+        return roles.stream().map(rn -> new SimpleGrantedAuthority("ROLE_" + rn)).collect(Collectors.toList());
     }
 
 }
