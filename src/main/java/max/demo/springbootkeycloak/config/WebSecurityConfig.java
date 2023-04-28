@@ -31,7 +31,7 @@ public class WebSecurityConfig {
                 .anyRequest()
                 .authenticated();
 
-        // configure authorization based on roles
+        // add configuration of authorization based on roles to oauth2ResourceServer
         http.oauth2ResourceServer()
                 .jwt()
                 .jwtAuthenticationConverter(jwtAuthenticationConverter());
@@ -41,7 +41,7 @@ public class WebSecurityConfig {
 
     private JwtAuthenticationConverter jwtAuthenticationConverter() {
         JwtAuthenticationConverter jwtConverter = new JwtAuthenticationConverter();
-        jwtConverter.setJwtGrantedAuthoritiesConverter(new KeycloakGrantedAuthoritiesConverter());
+        jwtConverter.setJwtGrantedAuthoritiesConverter(new GrantedAuthoritiesConverter());
         return jwtConverter;
     }
 
