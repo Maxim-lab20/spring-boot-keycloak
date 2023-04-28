@@ -1,0 +1,25 @@
+server:
+  port: 9090
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: spring-boot-app-client-id
+            client-secret: qa0M5YtuwAUCPQCYkbfBs5njr71vHz7x
+            scope: openid
+            authorization-grant-type: authorization_code
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/realms/Hogwarts
+            user-name-attribute: preferred_username
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/Hogwarts
+
+logging:
+  level:
+    org:
+      springframework: trace
