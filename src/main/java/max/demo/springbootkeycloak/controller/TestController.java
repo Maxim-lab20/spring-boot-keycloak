@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
+    @GetMapping("/everyone-authenticated")
+    public String getEveryoneText() {
+        return "hello to everyone that is authenticated";
+    }
+
     @GetMapping("/user")
     @RolesAllowed("USER")
     public String getHomeText() {
