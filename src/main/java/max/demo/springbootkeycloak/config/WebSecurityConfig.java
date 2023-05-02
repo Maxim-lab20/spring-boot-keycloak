@@ -27,6 +27,8 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        /* any endpoint that does not require a specific role (is not having @RolesAllowed annotation)
+         can be accessed only by authenticated user */
         http.authorizeHttpRequests()
                 .anyRequest()
                 .authenticated();
