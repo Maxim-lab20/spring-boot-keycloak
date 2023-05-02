@@ -14,7 +14,7 @@ public class TestController {
 
     @GetMapping("/user")
     @RolesAllowed("USER")
-    public String getHomeText() {
+    public String getUserText() {
         return "hello user";
     }
 
